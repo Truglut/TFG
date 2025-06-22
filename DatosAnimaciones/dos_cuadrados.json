@@ -1,0 +1,30 @@
+{
+    "poligonos": [
+        [ [0, 0], [-1, 1], [-2, 0], [-1, -1], [0, 0] ],
+        [ [0, 0], [1, 1], [2, 0], [1, -1], [0, 0] ]
+    ],
+    "curvas":[
+    {
+        "nodos": [],
+        "xpoly": "0",
+        "ypoly": "0"
+    },
+    {
+        "nodos": [],
+        "xpoly": "t",
+        "ypoly": "t**2"
+    },
+    {
+        "nodos": [],
+        "xpoly": "2*t",
+        "ypoly": "0"
+    },
+    {
+        "nodos": [],
+        "xpoly": "t",
+        "ypoly": "-t**2"
+    }
+    ],
+    "tiempos": [-1, 0, 1],
+    "tiempos_triangulos": [-1, 1]
+}
