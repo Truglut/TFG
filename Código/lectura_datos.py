@@ -21,7 +21,7 @@ def leer_poligonos_desde_json(ruta_fichero):
 
 def leer_curvas_desde_json(ruta_fichero):
     """
-    Lee el JSON y devuelve un diccionario cuyos valores son objetos de la clase Curva_Nodos
+    Lee el JSON y devuelve un diccionario cuyos valores son objetos de la clase Curva_Interpolacion
     """
 
     with open(ruta_fichero, 'r', encoding='utf-8') as f:
@@ -32,7 +32,7 @@ def leer_curvas_desde_json(ruta_fichero):
     curvas_obj = dict()
 
     for nombre in curvas_dict:
-        curvas_obj[nombre] = Curva_Nodos.from_dict(curvas_dict[nombre])
+        curvas_obj[nombre] = Curva_Interpolacion.from_dict(curvas_dict[nombre])
 
     return curvas_obj
 
@@ -44,13 +44,13 @@ def lista_curvas_desde_json(ruta_fichero):
     with open(ruta_fichero, 'r', encoding='utf-8') as f:
         datos = json.load(f)
 
-    return [Curva_Nodos.from_dict(c) for c in datos["curvas"]]
+    return [Curva_Interpolacion.from_dict(c) for c in datos["curvas"]]
 
 def leer_datos_desde_json(ruta_fichero):
     """
     Lee el fichero json y devuelve:
     - Una lista de los poligonos (representados por dos tuplas)
-    - Una lista de curvas (como objetos Curva_Nodos)
+    - Una lista de curvas (como objetos Curva_Interpolacion)
     - Una lista de tiempos (sp.Rational)
     """
 
@@ -64,7 +64,7 @@ def leer_datos_desde_json(ruta_fichero):
         tuplas_coordenadas = (tuple(sp.Rational(v[0]) for v in poly), tuple(sp.Rational(v[1]) for v in poly))
         lista_poligonos.append(tuplas_coordenadas)
     
-    curvas = [Curva_Nodos.from_dict(c) for c in datos["curvas"]]
+    curvas = [Curva_Interpolacion.from_dict(c) for c in datos["curvas"]]
     tiempos = [sp.Rational(t) for t in datos["tiempos"]]
     tiempos_triangulos = [sp.Rational(ti) for ti in datos.get("tiempos_triangulos", [])]
     tiempos_triangulos_mal = [sp.Rational(ti) for ti in datos.get("tiempos_triangulos_mal", [])]
