@@ -221,8 +221,10 @@ if __name__ == "__main__":
             writer = PillowWriter(fps=fps)
         elif extension == ".mp4":         
             writer = FFMpegWriter(fps=fps, metadata=dict(artist='Andrés Contreras Santos'), bitrate=2500)
+        elif extension == ".avi":
+            writer = FFMpegWriter(fps=fps, codec="mpeg4", bitrate=2500)
 
-        ani.save(ruta_archivo, writer=writer, dpi=125)
+        ani.save(ruta_archivo, writer=writer, dpi=150)
         print(f"Animación guardada como {ruta_archivo}")
     else:
         plt.show()
