@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, PillowWriter
+from matplotlib.animation import FuncAnimation, PillowWriter, FFMpegWriter
 from matplotlib.patches import Polygon
 from graficas import dibujar_poligonos
 from lectura_datos import leer_datos_desde_json
@@ -94,7 +94,11 @@ if __name__ == "__main__":
     poligono_movil = Polygon(verts_poligono_inicial, closed=True, color = colormap_poligono(0), alpha = 0)
     ax.add_patch(poligono_movil)
 
-    poligono_inicial = Polygon(verts_poligono_inicial, closed=True, facecolor = colormap_poligono(0), edgecolor = None, alpha = 0)
+    edge_poligonos = parametros["edge_poligonos"]
+
+    poligono_inicial = Polygon(verts_poligono_inicial, closed=True, 
+                               facecolor = colormap_poligono(0), 
+                               edgecolor = decidir_edgecolor(edge_poligonos, colormap_poligono(0)), alpha = 0)
     ax.add_patch(poligono_inicial)
 
     artists = points + traces + [poligono_movil] + [poligono_inicial]
@@ -173,19 +177,23 @@ if __name__ == "__main__":
         verts_poligono_movil = [(x[i][t], y[i][t]) for i in range(n)]
         poligono_movil.set_xy(verts_poligono_movil)
 
+        color_interior = colormap_poligono(t/frames_animacion)
         if any(intervalo[0] < t_vals[t] < intervalo[1] for intervalo in intervalos_triangulos_mal):
             poligono_movil.set_color('red')
         else:    
-            poligono_movil.set_color(colormap_poligono(t/frames_animacion))
+            poligono_movil.set_color(color_interior)
 
         # Para los valores clave de t, ponemos un triangulo
         if t!= 0 and t_vals[t] in tiempos_triangulos:
-            nuevo_poligono = Polygon(verts_poligono_movil, closed=True, facecolor = colormap_poligono(t/frames_animacion), edgecolor = None, alpha = alpha_poligonos_fijos)
+            nuevo_poligono = Polygon(verts_poligono_movil, closed=True, facecolor = color_interior, 
+                                     edgecolor = decidir_edgecolor(edge_poligonos, color_interior), 
+                                     alpha = alpha_poligonos_fijos)
             artists.append(nuevo_poligono)
             ax.add_patch(nuevo_poligono)
 
         if t_vals[t] in tiempos_triangulos_mal:
-            nuevo_poligono = Polygon(verts_poligono_movil, closed=True, facecolor = 'red', edgecolor = None, alpha = alpha_poligonos_fijos)
+            nuevo_poligono = Polygon(verts_poligono_movil, closed=True, facecolor = 'red', 
+                                     edgecolor = None, alpha = alpha_poligonos_fijos)
             artists.append(nuevo_poligono)
             ax.add_patch(nuevo_poligono)
             return artists
@@ -199,20 +207,22 @@ if __name__ == "__main__":
     # Guardar animación como GIF
     if parametros["guardar"]:
         ruta_archivo = parametros["ruta_archivo"]
+        base, extension = os.path.splitext(ruta_archivo)
         tiempo_total_segundos = tiempo_total/1000
         fps = round(num_frames/tiempo_total_segundos)
         print(f"Guardando con {fps} fps")
 
-        if ruta_archivo[-4:] != ".gif":
-            ruta_archivo += ".gif"
-
-        base = ruta_archivo
         i = 0
         while os.path.exists(ruta_archivo):
             i += 1
-            ruta_archivo = f"{base[:-4]}_{i}.gif"
-        writer = PillowWriter(fps=fps)
-        ani.save(ruta_archivo, writer=writer)
+            ruta_archivo = f"{base}_{i}" + extension
+
+        if extension == ".gif":
+            writer = PillowWriter(fps=fps)
+        elif extension == ".mp4":         
+            writer = FFMpegWriter(fps=fps, metadata=dict(artist='Andrés Contreras Santos'), bitrate=2500)
+
+        ani.save(ruta_archivo, writer=writer, dpi=125)
         print(f"Animación guardada como {ruta_archivo}")
     else:
         plt.show()

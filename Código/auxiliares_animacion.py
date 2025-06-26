@@ -87,6 +87,11 @@ def parsear_argumentos():
         "--alpha_curvas",
         help="Valor de opacidad de las curvas (tipo float)"
     )
+    parser.add_argument(
+        "--edge_poligonos",
+        help="Color del borde de los polígonos móviles. Para que sea el mismo que el interior, poner 'interior'" \
+        "Por defecto es None"
+    )
     args = parser.parse_args()
     return args
 
@@ -170,6 +175,11 @@ def leer_argumentos(args):
         alpha_poligonos_fijos = 0.5
     parametros["alpha_poligonos_fijos"] = alpha_poligonos_fijos
 
+    edge_poligonos = None
+    if args.edge_poligonos:
+        edge_poligonos = args.edge_poligonos
+    parametros["edge_poligonos"] = edge_poligonos
+
     if args.guardar_archivo:
         guardar = True
         ruta_archivo = args.guardar_archivo
@@ -192,3 +202,18 @@ def leer_argumentos(args):
     parametros["usar_repars"] = usar_repars
 
     return parametros
+
+def decidir_edgecolor(edge_poligonos, color_interior):
+    """
+    Decide el color que debe tener el borde de un polígono en función del parámetro edge_poligonos
+    y del color del interior dado en color_interior.
+    """
+
+    if edge_poligonos is None:
+        return None
+    
+    if edge_poligonos == "interior":
+        return color_interior
+    
+    else:
+        return edge_poligonos
