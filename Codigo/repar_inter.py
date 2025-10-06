@@ -30,11 +30,11 @@ if __name__ == "__main__":
         ders_string = input(f"Derivadas del polinomio en t = {t} (separadas por comas, fracciones entrecomilladas):\n")
         ders = literal_eval("[" + ders_string + "]")
 
-        nodos.append(Nodo_1d(t, valores_string, ders))
+        nodos.append(Nodo1d(t, valores_string, ders))
     
 
-    f = Polinomio_Interpolacion(nodos)
-    print("Lista de nodos incorporada a un objeto Polinomio_Interpolacion llamado 'f'")
+    f = PolinomioInterpolacion(nodos)
+    print("Lista de nodos incorporada a un objeto PolinomioInterpolacion llamado 'f'")
 
     plt.ion()
     fig, ax = plt.subplots()

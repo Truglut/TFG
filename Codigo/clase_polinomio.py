@@ -5,7 +5,7 @@ from ast import literal_eval
 from hermite import hermite_nodos
 t = sp.symbols('t')
 
-class Nodo_1d(object):
+class Nodo1d(object):
     def __init__(self, tiempo, valor, derivadas):
         self.tiempo = sp.Rational(tiempo)
         self.valor = sp.Rational(valor)
@@ -57,7 +57,7 @@ class Nodo_1d(object):
     def __str__(self):
         return f"Tiempo: {self.tiempo}\n" + f"Valor: {self.valor}\n" + f"Derivadas: {self.derivadas}\n"
 
-class Polinomio_Interpolacion(object):
+class PolinomioInterpolacion(object):
     def __init__(self, lista_nodos, polinomio = None):
         self.nodos = lista_nodos
         self.nodos.sort(key = lambda n: n.get_tiempo())
@@ -72,7 +72,7 @@ class Polinomio_Interpolacion(object):
         """
 
         nodos_dict_list = datos["nodos"]
-        nodos = [ Nodo_1d.from_dict(n) for n in nodos_dict_list ]
+        nodos = [ Nodo1d.from_dict(n) for n in nodos_dict_list ]
 
         poly = datos["poly"]
 
@@ -133,7 +133,7 @@ class Polinomio_Interpolacion(object):
         """
         Añade un nodo al polinomio. Si el tiempo del nodo ya existe, lanza una Exception.
         """
-        if not isinstance(nodo, Nodo_1d):
+        if not isinstance(nodo, Nodo1d):
             raise TypeError("El nodo debe ser una instancia de la clase Nodo")
         
         if nodo.get_tiempo() in self.tiempos:
@@ -145,7 +145,7 @@ class Polinomio_Interpolacion(object):
         self.actualizar_tiempos()
 
     def crear_nodo(self, t, valor, derivadas = None):
-        nuevo_nodo = Nodo_1d(t, valor, derivadas)
+        nuevo_nodo = Nodo1d(t, valor, derivadas)
         index = bisect.bisect_left(self.tiempos, t)
         if index < len(self.tiempos) and self.tiempos[index] == t:
             print(f"El valor t = {t} ya tiene un nodo en esta curva. ¿Cómo desea proceder?")

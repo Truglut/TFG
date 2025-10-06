@@ -6,7 +6,7 @@ from nodos import Nodo, punto_a_Rational
 from hermite import curva_hermite_nodos
 t = sp.symbols('t')
 
-class Curva_Interpolacion(object):
+class CurvaInterpolacion(object):
     def __init__(self, lista_nodos, xpoly = None, ypoly = None):
         self.nodos = lista_nodos
         self.nodos.sort(key = lambda n: n.get_tiempo())
