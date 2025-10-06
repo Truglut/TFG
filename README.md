@@ -52,13 +52,21 @@ python -m TFG.Codigo.Curvas.curvas_inter ./Codigo/Curvas/DatosPoligonos/octagono
 ```
 
 ### curvas_inter
----falta---
+`curvas_inter.py` es la interfaz interactiva para generar y editar curvas polinómicas de interpolación que reproducen un polígono dado. Lee un fichero JSON con los polígonos a representar, dibuja la(s) figura(s) y abre un REPL interactivo donde el usuario puede crear/editar nodos y calcular la interpolación de Hermite empleando las clases CurvaInterpolacion y Nodo. El script también admite cargar curvas ya calculadas desde un JSON y permite guardar en disco las curvas creadas durante la sesión.
+
+Argumentos:
+- `archivo_poligonos` (posición): ruta al fichero JSON que contiene los polígonos a mostrar.
+- `--archivo_curvas` (opcional): ruta a un JSON con curvas ya calculadas (se cargan en memoria).
 
 ### repar_inter
----falta---
+`repar_inter.py` es la herramienta interactiva para construir polinomios univariantes que interpolan valores y derivadas en tiempos dados (interpolación de Hermite en 1D). El usuario introduce los tiempos y los datos (valor en cada tiempo y derivadas) por consola; el script construye un objeto `PolinomioInterpolacion` y muestra su gráfica, permitiendo entrar en un REPL para editar nodos y volver a interpolar. El polinomio y los nodos pueden guardarse en formato JSON al cerrar la sesión. 
+
+No toma argumentos en línea de comandos.
 
 ### animaciones_poligonos
----falta---
+`animacion_poligonos.py` genera animaciones (GIF/MP4/AVI o visualización en pantalla) que muestran cómo un polígono “se deforma” siguiendo las curvas polinómicas definidas. Lee sus datos a partir de un fichero JSON. Toma argumentos en línea de comandos:
+- `archivo_datos` (posición): fichero JSON con los datos para la animación (polígonos, curvas, intervalos, reparametrizaciones, etc.).
+- Opcionales (pasados como --flag): `--frames_por_intervalo`, `--tiempo_animacion`, `--tiempo_fade_inicial`, `--tiempo_parada_inicial`, `--tiempo_parada_final`, `--reparametrizaciones`, `--colores_poligonos`, `--alpha_figura`, `--alpha_poligono_movil`, `--alpha_poligonos_fijos`, `--guardar_archivo`, `--colores_curvas`, `--alpha_curvas`, `--edge_poligonos`. (La función `leer_argumentos` aplica valores por defecto si no se pasan).
 
 ## Formato de datos
 Los archivos de entrada se guardan en formato JSON. Por ejemplo, un archivo de polígonos tiene la forma:
