@@ -98,5 +98,5 @@ Se recomienda usar Python 3.10 o superior.
 **Autor**: Andrés Contreras Santos <br>
 **Supervisor**: José Francisco Fernando Galván <br>
 **Universidad**: Universidad Complutense de Madrid (UCM) <br>
-**Grado**: Matemáticas
+**Grado**: Matemáticas <br>
 **Año**: 2025
