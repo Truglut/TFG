@@ -1,6 +1,6 @@
 import json
 import sympy as sp
-from clase_curva import *
+from Codigo.Curvas.clase_curva import *
 
 def leer_poligonos_desde_json(ruta_fichero):
     """

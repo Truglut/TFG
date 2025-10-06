@@ -2,8 +2,8 @@ import os
 import matplotlib.pyplot as plt
 from ast import literal_eval
 import sympy as sp
-from clase_polinomio import *
-from lectura_datos import *
+from .clase_polinomio import *
+from Codigo.Auxiliares.lectura_datos import *
 
 def borrar(ax, grid = True):
     ax.clear()

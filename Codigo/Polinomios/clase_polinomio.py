@@ -2,11 +2,11 @@ import numpy as np
 import sympy as sp
 import bisect
 from ast import literal_eval
-from hermite import hermite_nodos
+from Codigo.Auxiliares.hermite import hermite_nodos
 t = sp.symbols('t')
 
 class Nodo1d(object):
-    def __init__(self, tiempo, valor, derivadas):
+    def __init__(self, tiempo, valor, derivadas = []):
         self.tiempo = sp.Rational(tiempo)
         self.valor = sp.Rational(valor)
         self.derivadas = [sp.Rational(d) for d in derivadas]
@@ -144,7 +144,7 @@ class PolinomioInterpolacion(object):
         self.nodos.sort(key = lambda n: n.get_tiempo())
         self.actualizar_tiempos()
 
-    def crear_nodo(self, t, valor, derivadas = None):
+    def crear_nodo(self, t, valor, derivadas = []):
         nuevo_nodo = Nodo1d(t, valor, derivadas)
         index = bisect.bisect_left(self.tiempos, t)
         if index < len(self.tiempos) and self.tiempos[index] == t:

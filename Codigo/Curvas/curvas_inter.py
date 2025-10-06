@@ -1,10 +1,10 @@
 import os
 import argparse
 import matplotlib.pyplot as plt
-from lectura_datos import *
-from sturm import *
-from cambios_signo import signo
-from graficas import dibujar_poligonos
+from Codigo.Auxiliares.lectura_datos import *
+from Codigo.Auxiliares.sturm import *
+from Codigo.Auxiliares.cambios_signo import signo
+from Codigo.Auxiliares.graficas import dibujar_poligonos
 
 if __name__ == "__main__":
     print("Iniciando...")
