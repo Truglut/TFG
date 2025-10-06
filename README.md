@@ -95,8 +95,8 @@ pip install sympy matplotlib os argparse numpy ast json bisect
 Se recomienda usar Python 3.10 o superior.
 
 ## Autoría
-**Autor**: Andrés Contreras Santos
-**Supervisor**: José Francisco Fernando Galván
-**Universidad**: Universidad Complutense de Madrid (UCM)
+**Autor**: Andrés Contreras Santos <br>
+**Supervisor**: José Francisco Fernando Galván <br>
+**Universidad**: Universidad Complutense de Madrid (UCM) <br>
 **Grado**: Matemáticas
 **Año**: 2025
