@@ -3,9 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, PillowWriter, FFMpegWriter
 from matplotlib.patches import Polygon
-from graficas import dibujar_poligonos
-from lectura_datos import leer_datos_desde_json
-from auxiliares_animacion import *
+from Codigo.Auxiliares.graficas import dibujar_poligonos
+from Codigo.Auxiliares.lectura_datos import leer_datos_desde_json
+from .auxiliares_animacion import *
 
 if __name__ == "__main__":
     print("Iniciando...")

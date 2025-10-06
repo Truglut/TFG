@@ -1,5 +1,5 @@
 import sympy as sp
-from nodos import *
+from Codigo.Curvas.nodos import *
 t = sp.symbols('t')
 
 def hermite_sympy_dicts(t_vals, valores_dict, ders_dict):

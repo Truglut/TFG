@@ -2,8 +2,8 @@ import numpy as np
 import sympy as sp
 import bisect
 from ast import literal_eval
-from nodos import Nodo, punto_a_Rational
-from hermite import curva_hermite_nodos
+from Codigo.Curvas.nodos import Nodo, punto_a_Rational
+from Codigo.Auxiliares.hermite import curva_hermite_nodos
 t = sp.symbols('t')
 
 class CurvaInterpolacion(object):

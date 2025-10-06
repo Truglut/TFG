@@ -1,5 +1,5 @@
 import sympy as sp
-from cambios_signo import cambios_signo
+from Codigo.Auxiliares.cambios_signo import cambios_signo
 
 x, y, t = sp.symbols('x y t')
 def nro_raices_sturm(f, intervalo1, intervalo2):
