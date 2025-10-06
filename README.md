@@ -1,7 +1,7 @@
 # TFG: *Cómo deformar polinómicamente la bola unidad cerrada para construir poliedros*
 Este repositorio contiene el código desarrollado para mi Trabajo de Fin de Grado en Matemáticas, presentado en julio de 2025.
 
-Este proyecto explora cómo deformar polinómicamente la bola unidad tridimensional para obtener figuras poliédricas.
+El proyecto explora cómo deformar polinómicamente la bola unidad tridimensional para obtener figuras poliédricas.
 Implementa los métodos descritos en la memoria del TFG, combinando interpolación de Hermite, visualización y animación con Python.
 
 ---
